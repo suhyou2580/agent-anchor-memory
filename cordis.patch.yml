@@ -1,0 +1,11 @@
+# anchor-memory bundle patch
+#
+# 安装方式：plugin_manager action=install_bundle target=<此目录绝对路径>
+#   → 自动写入 profile 的 package.json 依赖并插入下面这一行。
+#
+# 本插件不导出 Config schema（schema 依赖 schemastery，会让插件目录引入外部依赖）。
+# 因此这里**不要**写 config: —— 所有可调参数通过 config.json / 环境变量提供，
+# 见 config.example.json 与 README「配置」一节。
+- insert:
+    - id: anchor-memory
+      name: '@local/anchor-memory'

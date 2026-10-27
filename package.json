@@ -1,0 +1,62 @@
+{
+  "name": "@local/anchor-memory",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "QQ Agent 锚点记忆：SQLite + 锚点 + 中文全文检索的长期记忆（回复前自动注入 + 8 个 MCP 工具控制）",
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "qq-bot",
+    "long-term-memory",
+    "sqlite",
+    "fts5",
+    "agent"
+  ],
+  "engines": {
+    "node": ">=22.5"
+  },
+  "main": "./src/dsh-plugin.js",
+  "exports": {
+    ".": "./src/dsh-plugin.js",
+    "./service": "./src/service.js",
+    "./mcp-tools": "./src/mcp-tools.js",
+    "./config": "./src/config.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "meta": {
+    "title": "锚点记忆",
+    "description": "为 QQ Agent 提供可检索、可纠正、可删除的长期记忆：写入结构化、读取按需检索、回复前注入。"
+  },
+  "files": [
+    "src/*.js",
+    "migrations/*.sql",
+    "cordis.patch.yml",
+    "config.example.json",
+    "index.js",
+    "README.md",
+    "docs/*.md",
+    "integration/*"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "test:perf": "node --test tests/performance/bench.perf.mjs",
+    "selfcheck": "node scripts/selfcheck.mjs",
+    "eval": "node scripts/eval-recall.mjs",
+    "bench": "node scripts/bench.mjs",
+    "migrate": "node scripts/migrate.mjs",
+    "health": "node scripts/health.mjs",
+    "demo": "node scripts/demo.mjs",
+    "import": "node scripts/import-existing-memory.mjs",
+    "confirm-pending": "node scripts/confirm-pending.mjs",
+    "integrate:check": "node scripts/integrate-bridge.mjs --check",
+    "integrate:apply": "node scripts/integrate-bridge.mjs --apply",
+    "integrate:remove": "node scripts/integrate-bridge.mjs --remove"
+  }
+}

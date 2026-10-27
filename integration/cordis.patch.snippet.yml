@@ -1,0 +1,18 @@
+# 把 anchor-memory 挂进 DSH profile
+#
+# 位置：%USERPROFILE%\.dsh\profiles\web\cordis.patch.yml
+# 追加到文件末尾即可（不要放进 qq-bridge 维护的那两个 BEGIN/END 区块内部，
+# 那些区块会被 scripts/setup-dsh.mjs 整体重写）。
+#
+# 同时需要在同目录的 package.json 里：
+#   1) dependencies 增加  "@local/anchor-memory": "link:<本仓库绝对路径>"
+#   2) dsh.profile.bundles 增加  "@local/anchor-memory"
+#
+# 然后在 DSH 里执行（或重启 DSH）：
+#   plugin_manager action=install_bundle target=<本仓库绝对路径>
+
+# === anchor-memory（回复前自动注入长期记忆）BEGIN ===
+- insert:
+    - id: anchor-memory
+      name: '@local/anchor-memory'
+# === anchor-memory END ===
